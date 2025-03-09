@@ -2,16 +2,12 @@ package com.example.springboot.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Data
 @Entity
-@SQLDelete(sql = "Update task_history Set is_deleted = true WHERE id = ?")
-@SQLRestriction("is_deleted=false")
 @Table(name = "task_history")
 public class TaskHistory {
   @Id
@@ -19,7 +15,7 @@ public class TaskHistory {
   private Long id;
 
   @ManyToOne
-  @JoinColumn(name = "todo_id")
+  @JoinColumn(name = "todo_id", nullable = false)
   private Todo todo;
 
   @Column(name = "old_state")
@@ -33,8 +29,5 @@ public class TaskHistory {
   private LocalDateTime changeDate;
 
   @Column(name = "changed_by")
-  private Long changedBy = 1L;
-
-  @Column(name = "is_deleted")
-  private boolean isDeleted = false;
+  private String changedBy;
 }

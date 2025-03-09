@@ -1,17 +1,21 @@
 package com.example.springboot.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
-@SQLDelete(sql = "Update todos Set is_deleted = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE todos SET is_deleted=true WHERE id=?")
 @SQLRestriction("is_deleted=false")
 @Table(name = "todos")
 public class Todo {
@@ -26,21 +30,6 @@ public class Todo {
   @Column(name = "due_date")
   private LocalDateTime dueDate;
 
-  public Todo(Long id, String title, String description, LocalDateTime dueDate, Priority priority, Status status, LocalDateTime createdAt, LocalDateTime updatedAt, Long userId) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.dueDate = dueDate;
-    this.priority = priority;
-    this.status = status;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
-    this.userId = userId;
-  }
-
-  public Todo() {
-
-  }
 
   @Enumerated(EnumType.STRING)
   private Priority priority = Priority.MEDIUM;
@@ -59,14 +48,11 @@ public class Todo {
   @Column(name = "user_id")
   private Long userId = 1L;
 
-  @Column(name = "is_deleted", nullable = false)
+  @Column(name = "is_deleted", nullable = false, columnDefinition = "TINYINT(1)")
   private boolean isDeleted = false;
 
-  public String getInfo() {
-    return "Title: " + title
-      + "\nDescription: " + description
-      + "\nDue date: " + dueDate
-      + "\nPriority: " + priority
-      + "\nStatus: " + status;
-  }
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<TaskHistory> taskHistories = new ArrayList<>();
 }
