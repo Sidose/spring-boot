@@ -1,38 +1,113 @@
 databaseChangeLog:
   - changeSet:
-      id: 3
+      id: insert-todos
       author: ssydorenko
       changes:
         - insert:
             tableName: todos
             columns:
-              - column:
-                  name: id
-                  value: "1"
-              - column:
-                  name: title
-                  value: "Todo 1"
-              - column:
-                  name: description
-                  value: "Todo 1 task"
-              - column:
-                  name: due_date
-                  valueDate: 2025-04-01T12:00:00
-              - column:
-                  name: priority
-                  value: "HIGH"
-              - column:
-                  name: status
-                  value: "PENDING"
-              - column:
-                  name: created_at
-                  valueDate: 2025-02-09T09:00:00
-              - column:
-                  name: updated_at
-                  valueDate: 2025-03-09T10:00:00
-              - column:
-                  name: user_id
-                  value: "1"
-              - column:
-                  name: is_deleted
-                  valueBoolean: "false"
+              - column: {name: user_id, valueNumeric: 1}
+              - column: {name: title, value: "First user task one"}
+              - column: {name: description, value: "Description for First user task one"}
+              - column: {name: due_date, valueDate: "2025-03-30T12:00:05"}
+              - column: {name: priority, value: "HIGH"}
+              - column: {name: status, value: "PENDING"}
+              - column: {name: created_at, valueDate: "2025-03-13T10:00:05"}
+              - column: {name: updated_at, valueDate: "2025-03-15T11:00:05"}
+              - column: {name: is_deleted, valueBoolean: "false"}
+        - insert:
+            tableName: todos
+            columns:
+              - column: { name: user_id, valueNumeric: 1 }
+              - column: { name: title, value: "First user task second" }
+              - column: { name: description, value: "Description for First user task second" }
+              - column: { name: due_date, valueDate: "2025-03-30T12:00:05" }
+              - column: { name: priority, value: "MEDIUM" }
+              - column: { name: status, value: "IN_PROGRESS" }
+              - column: { name: created_at, valueDate: "2025-03-13T10:30:05" }
+              - column: { name: updated_at, valueDate: "2025-03-15T11:30:05" }
+              - column: { name: is_deleted, valueBoolean: "false" }
+        - insert:
+            tableName: todos
+            columns:
+              - column: { name: user_id, valueNumeric: 1 }
+              - column: { name: title, value: "First user task third" }
+              - column: { name: description, value: "Description for First user task third" }
+              - column: { name: due_date, valueDate: "2025-03-30T12:00:05" }
+              - column: { name: priority, value: "LOW" }
+              - column: { name: status, value: "COMPLETED" }
+              - column: { name: created_at, valueDate: "2025-03-13T10:40:05" }
+              - column: { name: updated_at, valueDate: "2025-03-15T11:40:05" }
+              - column: { name: is_deleted, valueBoolean: "false" }
+        - insert:
+            tableName: todos
+            columns:
+              - column: { name: user_id, valueNumeric: 2 }
+              - column: { name: title, value: "Second user task first" }
+              - column: { name: description, value: "Description for second user task first" }
+              - column: { name: due_date, valueDate: "2025-03-30T12:00:05" }
+              - column: { name: priority, value: "HIGH" }
+              - column: { name: status, value: "COMPLETED" }
+              - column: { name: created_at, valueDate: "2025-03-13T10:45:05" }
+              - column: { name: updated_at, valueDate: "2025-03-15T11:45:05" }
+              - column: { name: is_deleted, valueBoolean: "false" }
+        - insert:
+            tableName: todos
+            columns:
+              - column: { name: user_id, valueNumeric: 2 }
+              - column: { name: title, value: "Second user task second" }
+              - column: { name: description, value: "Description for second user task second" }
+              - column: { name: due_date, valueDate: "2025-03-30T12:00:05" }
+              - column: { name: priority, value: "MEDIUM" }
+              - column: { name: status, value: "IN_PROGRESS" }
+              - column: { name: created_at, valueDate: "2025-03-13T10:50:05" }
+              - column: { name: updated_at, valueDate: "2025-03-15T11:50:05" }
+              - column: { name: is_deleted, valueBoolean: "false" }
+        - insert:
+            tableName: todos
+            columns:
+              - column: { name: user_id, valueNumeric: 2 }
+              - column: { name: title, value: "Second user task third" }
+              - column: { name: description, value: "Description for second user task third" }
+              - column: { name: due_date, valueDate: "2025-03-30T12:00:05" }
+              - column: { name: priority, value: "LOW" }
+              - column: { name: status, value: "COMPLETED" }
+              - column: { name: created_at, valueDate: "2025-03-13T10:51:05" }
+              - column: { name: updated_at, valueDate: "2025-03-15T11:51:05" }
+              - column: { name: is_deleted, valueBoolean: "false" }
+        - insert:
+            tableName: todos
+            columns:
+              - column: { name: user_id, valueNumeric: 3 }
+              - column: { name: title, value: "Third user task first" }
+              - column: { name: description, value: "Description for third user task first" }
+              - column: { name: due_date, valueDate: "2025-03-30T12:00:05" }
+              - column: { name: priority, value: "HIGH" }
+              - column: { name: status, value: "PENDING" }
+              - column: { name: created_at, valueDate: "2025-03-13T10:52:05" }
+              - column: { name: updated_at, valueDate: "2025-03-15T11:52:05" }
+              - column: { name: is_deleted, valueBoolean: "false" }
+        - insert:
+            tableName: todos
+            columns:
+              - column: { name: user_id, valueNumeric: 3 }
+              - column: { name: title, value: "Third user task second" }
+              - column: { name: description, value: "Description for third user task second" }
+              - column: { name: due_date, valueDate: "2025-03-30T12:00:05" }
+              - column: { name: priority, value: "MEDIUM" }
+              - column: { name: status, value: "IN_PROGRESS" }
+              - column: { name: created_at, valueDate: "2025-03-13T10:53:05" }
+              - column: { name: updated_at, valueDate: "2025-03-15T11:53:05" }
+              - column: { name: is_deleted, valueBoolean: "false" }
+        - insert:
+            tableName: todos
+            columns:
+              - column: { name: user_id, valueNumeric: 3 }
+              - column: { name: title, value: "Third user task third" }
+              - column: { name: description, value: "Description for third user task third" }
+              - column: { name: due_date, valueDate: "2025-03-30T12:00:05" }
+              - column: { name: priority, value: "LOW" }
+              - column: { name: status, value: "COMPLETED" }
+              - column: { name: created_at, valueDate: "2025-03-13T10:54:05" }
+              - column: { name: updated_at, valueDate: "2025-03-15T11:54:05" }
+              - column: { name: is_deleted, valueBoolean: "false" }
