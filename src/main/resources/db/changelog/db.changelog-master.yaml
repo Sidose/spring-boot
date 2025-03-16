@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - include:
+      file: changes/create-todos-table.yml
+      relativeToChangelogFile: true
+  - include:
+      file: changes/create-task-history-table.yml
+      relativeToChangelogFile: true
+  - include:
+      file: changes/insert-todos-data.yml
+      relativeToChangelogFile: true
+  - include:
+      file: changes/insert-task-history-data.yml
+      relativeToChangelogFile: true

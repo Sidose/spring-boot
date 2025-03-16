@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: ssydorenko
+      changes:
+        - insert:
+            tableName: todos
+            columns:
+              - column:
+                  name: id
+                  value: "1"
+              - column:
+                  name: title
+                  value: "Todo 1"
+              - column:
+                  name: description
+                  value: "Todo 1 task"
+              - column:
+                  name: due_date
+                  valueDate: 2025-04-01T12:00:00
+              - column:
+                  name: priority
+                  value: "HIGH"
+              - column:
+                  name: status
+                  value: "PENDING"
+              - column:
+                  name: created_at
+                  valueDate: 2025-02-09T09:00:00
+              - column:
+                  name: updated_at
+                  valueDate: 2025-03-09T10:00:00
+              - column:
+                  name: user_id
+                  value: "1"
+              - column:
+                  name: is_deleted
+                  valueBoolean: "false"
