@@ -11,3 +11,12 @@ databaseChangeLog:
   - include:
       file: changes/insert-task-history-data.yml
       relativeToChangelogFile: true
+  - include:
+      file: changes/create-user-table.yml
+      relativeToChangelogFile: true
+  - include:
+      file: changes/insert-users-data.yml
+      relativeToChangelogFile: true
+  - include:
+      file: changes/set-bcrypt-password.yml
+      relativeToChangelogFile: true

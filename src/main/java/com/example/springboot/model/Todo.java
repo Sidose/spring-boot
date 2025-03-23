@@ -30,7 +30,6 @@ public class Todo {
   @Column(name = "due_date")
   private LocalDateTime dueDate;
 
-
   @Enumerated(EnumType.STRING)
   private Priority priority = Priority.MEDIUM;
 
@@ -46,7 +45,7 @@ public class Todo {
   private LocalDateTime updatedAt;
 
   @Column(name = "user_id")
-  private Long userId = 1L;
+  private Long userId;
 
   @Column(name = "is_deleted", nullable = false, columnDefinition = "TINYINT(1)")
   private boolean isDeleted = false;
