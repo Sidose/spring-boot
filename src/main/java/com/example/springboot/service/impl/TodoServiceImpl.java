@@ -52,7 +52,7 @@ public class TodoServiceImpl implements TodoService {
     if (principal instanceof UserDetails) {
       User user = (User) principal;
 
-      return user.getUsername();
+      return user.getEmail();
     } else {
       throw new IllegalStateException("User is not authenticated");
     }

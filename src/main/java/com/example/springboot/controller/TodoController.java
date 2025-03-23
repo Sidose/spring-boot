@@ -29,7 +29,6 @@ import java.util.List;
 public class TodoController {
   private final TodoService todoService;
 
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
   @PostMapping
   public ResponseEntity<TodoResponseDto> save(@RequestBody @Valid TodoCreateDto todoDto) {
 
@@ -38,7 +37,6 @@ public class TodoController {
     return ResponseEntity.status(HttpStatus.CREATED).body(todoResponseDto);
   }
 
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
   @PutMapping("/{id}")
   public TodoResponseDto update(@PathVariable Long id, @RequestBody @Valid TodoUpdateDto todoDto) {
 

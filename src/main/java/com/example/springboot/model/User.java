@@ -1,27 +1,22 @@
 package com.example.springboot.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "user")
 @SQLDelete(sql = "UPDATE user SET is_delete = true WHERE id=?")
 @Where(clause = "is_delete = false")
-public class User implements UserDetails {
+public class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,43 +31,15 @@ public class User implements UserDetails {
   @Column(name = "is_deleted")
   private boolean isDeleted;
 
-  @Override
-  public Collection<? extends GrantedAuthority>
-  getAuthorities() {
-    if (email.startsWith("admin@")) {
-      return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
-    }
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+    name = "user_roles",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "role_id")
+  )
+  private Set<Role> roles;
 
-    return List.of(new SimpleGrantedAuthority("ROLE_USER"));
-  }
-
-  @Override
-  public String getPassword() {
-    return password;
-  }
-
-  @Override
   public String getUsername() {
     return email;
-  }
-
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
-  }
-
-  @Override
-  public boolean isAccountNonLocked() {
-    return true;
-  }
-
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
-
-  @Override
-  public boolean isEnabled() {
-    return !isDeleted;
   }
 }

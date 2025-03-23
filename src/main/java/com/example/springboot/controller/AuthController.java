@@ -4,7 +4,6 @@ import com.example.springboot.dto.user.UserLoginRequestDto;
 import com.example.springboot.dto.user.UserLoginResponseDto;
 import com.example.springboot.dto.user.UserRegistrationRequestDto;
 import com.example.springboot.dto.user.UserResponseDto;
-import com.example.springboot.exception.RegistrationException;
 import com.example.springboot.security.AuthenticationService;
 import com.example.springboot.service.UserService;
 import jakarta.validation.Valid;
@@ -22,12 +21,12 @@ public class AuthController {
   private final AuthenticationService authenticationService;
 
   @PostMapping("/login")
-  public UserLoginResponseDto login(@RequestBody UserLoginRequestDto requestDto) throws Exception {
+  public UserLoginResponseDto login(@RequestBody UserLoginRequestDto requestDto) {
     return authenticationService.authenticate(requestDto);
   }
 
   @PostMapping("/register")
-  public UserResponseDto register(@Valid @RequestBody UserRegistrationRequestDto request) throws RegistrationException {
+  public UserResponseDto register(@Valid @RequestBody UserRegistrationRequestDto request) {
     return userService.register(request);
   }
 }

@@ -1,8 +1,7 @@
 package com.example.springboot.config;
 
 import com.example.springboot.exception.ResourceNotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -19,9 +18,8 @@ import java.util.List;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
+@Log4j2
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-
-  private static final Logger LOGGER = (Logger) LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
   @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(
@@ -82,7 +80,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(Exception.class)
   public ResponseEntity<ErrorResponse> handleAllOtherExceptions(Exception ex) {
-    LOGGER.error("Unexpected error occurred", ex);
+    log.info("Unexpected error occurred", ex);
     ErrorResponse errorResponse = new ErrorResponse(
       LocalDateTime.now(),
       HttpStatus.INTERNAL_SERVER_ERROR,
